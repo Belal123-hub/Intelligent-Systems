@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+.venv*/
+
+# MLflow / experiments
+mlflow.db
+mlruns/
+mlartifacts/
+optuna.db
+
+# Run directories (keep only the placeholder)
+runs/*
+!runs/.gitkeep
+
+# Model files
+*.pth
+*.pt
+*.ckpt
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
