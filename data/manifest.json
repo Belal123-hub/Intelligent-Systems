@@ -1,0 +1,22 @@
+{
+  "load_digits": {
+    "source": "scikit-learn",
+    "sklearn_version": "1.9.1",
+    "loader": "sklearn.datasets.load_digits(return_X_y=True)",
+    "n_samples": 1797,
+    "n_features": 64,
+    "feature_range": [
+      0,
+      16
+    ],
+    "split_rule": "stratified by class; test_size=0.20 of all; then val_size=0.25 of the remainder; both with random_state=SPLIT_SEED",
+    "split_seed": 0,
+    "sizes": {
+      "train": 1077,
+      "val": 360,
+      "test": 360
+    },
+    "split_file": "data/split.json",
+    "split_sha256": "a2989673318262131c80efaf1174d1a030f000e720138ce99f07c0ad3fb3826c"
+  }
+}
