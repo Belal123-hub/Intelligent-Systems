@@ -60,7 +60,10 @@ def print_table(title, rows, headers):
 # ---------------------------------------------------------------------------
 
 def experiment1(runs):
-    base = [r for r in runs if r["series"] == "base" and r["status"] == "completed"]
+    base = [r for r in runs
+            if r["series"] == "base"
+            and r["status"] == "completed"
+            and r["seed"] != 0]
     base.sort(key=lambda r: r["seed"])
 
     rows = []
