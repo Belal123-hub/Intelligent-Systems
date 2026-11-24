@@ -18,5 +18,13 @@
     },
     "split_file": "data/split.json",
     "split_sha256": "a2989673318262131c80efaf1174d1a030f000e720138ce99f07c0ad3fb3826c"
+  },
+  "pride_and_prejudice": {
+    "title": "Pride and Prejudice",
+    "author": "Jane Austen",
+    "version": "Project Gutenberg ebook 1342",
+    "source": "https://gutenberg.pglaf.org/cache/epub/1342/pg1342.txt",
+    "path": "data/pride_and_prejudice.txt",
+    "sha256": "3f6bb9d6f78e0293b56acd4714dd68cb7d6d1d293402031ce9d5a216bcaf9d75"
   }
 }
