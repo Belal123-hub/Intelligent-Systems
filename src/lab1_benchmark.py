@@ -55,16 +55,20 @@ class Prompts:
 
     def messages(self, requested_tokens, label, offset=0):
         prefix = f"{hashlib.sha256(label.encode()).hexdigest()[:20]}\nSummarize the following text in one sentence.\n\n"
-        size = requested_tokens
-        tried = set()
-        while size > 0 and size not in tried:
-            tried.add(size)
-            excerpt = self.tokenizer.decode(self.book[offset:offset + size], clean_up_tokenization_spaces=False)
-            messages = [{"role": "user", "content": prefix + excerpt}]
-            actual = len(self.tokenizer.apply_chat_template(messages, tokenize=True, add_generation_prompt=True, return_dict=False))
-            if actual == requested_tokens:
-                return messages
-            size += requested_tokens - actual
+        # Decoding and re-encoding can merge tokens at excerpt boundaries.
+        # Try nearby starting positions if the length adjustment cycles.
+        for displacement in range(24):
+            start = offset + displacement
+            size = requested_tokens
+            tried = set()
+            while size > 0 and size not in tried:
+                tried.add(size)
+                excerpt = self.tokenizer.decode(self.book[start:start + size], clean_up_tokenization_spaces=False)
+                messages = [{"role": "user", "content": prefix + excerpt}]
+                actual = len(self.tokenizer.apply_chat_template(messages, tokenize=True, add_generation_prompt=True, return_dict=False))
+                if actual == requested_tokens:
+                    return messages
+                size += requested_tokens - actual
         raise ValueError(f"Could not tokenize {label} to exactly {requested_tokens} tokens")
 
 
